@@ -1,0 +1,9 @@
+{
+"Action":"INSERT",
+"Username":"me",
+"EhiuBuildID":1,
+"EhiuBuildConfigDetailID":17,
+"ConfigType":"TEXT",
+"Prompt":"A prompt",
+"TestTag":"A tst tag"
+}

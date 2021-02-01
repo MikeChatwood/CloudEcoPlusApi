@@ -1,0 +1,20 @@
+{
+  "Records": [
+    {
+      "kinesis": {
+        "partitionKey": "partitionKey-3",
+        "kinesisSchemaVersion": "1.0",
+        "data": "eyJBY3Rpb24iOjAsIk1lc3NhZ2VOYW1lIjoicHJvcGVydHkiLCJQcm9wZXJ0eUlEIjoxLCJTaXRlSUQiOjk5LCJQcm9wZXJ0eU51bWJlciI6Ijk5IiwiQmxvY2tOYW1lIjoiQm5hbWUiLCJCbG9ja0tleSI6IkFBQUEiLCJQcm9wZXJ0eVJlZmVyZW5jZSI6IlBSRUYiLCJCbG9ja0FkZHJlc3MiOiJhQmxvY2tBZGRyZXNzIiwiQmxvY2tQb3N0Q29kZSI6IkxMMiAzQ0MiLCJBcmNoaXZlZFByb3BlcnR5IjpmYWxzZSwiQXJjaGl2ZWRSZWFzb24iOiJibGFoIiwiQXJjaGl2ZWRXaG8iOiJtZSIsIkFyY2hpdmVkV2hlbiI6IiJ9",
+        "sequenceNumber": "49545115243490985018280067714973144582180062593244200961",
+        "approximateArrivalTimestamp": 1428537600.0
+      },
+      "eventSource": "aws:kinesis",
+      "eventID": "shardId-000000000000:49545115243490985018280067714973144582180062593244200961",
+      "invokeIdentityArn": "arn:{partition}:iam::EXAMPLE",
+      "eventVersion": "1.0",
+      "eventName": "aws:kinesis:record",
+      "eventSourceARN": "arn:{partition}:kinesis:EXAMPLE",
+      "awsRegion": "{region}"
+    }
+  ]
+}

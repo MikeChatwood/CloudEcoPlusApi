@@ -1,0 +1,15 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.runtimeconfig.dev.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\ecoCommon.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\bin\Release\netcoreapp3.1\linux-x64\ecoCommon.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.csprojAssemblyReference.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.AssemblyInfoInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.AssemblyInfo.cs
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.csproj.CoreCompileInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.csproj.CopyComplete
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoEhiuBuildConfigCommandsCrud\obj\Release\netcoreapp3.1\linux-x64\CloudEcoBuildConfigCommandsCrud.genruntimeconfig.cache

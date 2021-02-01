@@ -1,0 +1,16 @@
+{
+
+"Action":"UPDATE",
+"EhiuBuildConfigID":3,
+"DisplaySequence":0,
+"Mandatory":false,
+"ConfigType":"ConfigTy",
+"Prompt":"Prompt Val",
+"Tag":"Tag Val",
+"CreatedBy": "Me",
+"TextDefault":"Tdefauts"
+
+}
+
+
+

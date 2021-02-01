@@ -1,0 +1,17 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\CloudEcoGetLiveBuildConfigs.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\CloudEcoGetLiveBuildConfigs.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\CloudEcoGetLiveBuildConfigs.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\CloudEcoGetLiveBuildConfigs.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Core.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\AWSSDK.Core.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\AWSSDK.SecretsManager.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Amazon.SecretsManager.Extensions.Caching.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.Options.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\Microsoft.Extensions.Primitives.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\System.Data.SqlClient.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\ecoCommon.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoGetLiveBuildConfigs\bin\Release\netcoreapp3.1\publish\ecoCommon.pdb

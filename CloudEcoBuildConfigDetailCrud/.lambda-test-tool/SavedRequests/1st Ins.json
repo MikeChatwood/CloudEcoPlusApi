@@ -1,0 +1,11 @@
+{
+"Action":"INSERT",
+"EhiuBuildConfigID":1,
+"DisplaySequence":0,
+"Mandatory":false,
+"ConfigType":"ConfigTy",
+"Prompt":"Prompt Val",
+"Tag":"Tag Val",
+"UserName": "Me"
+
+}

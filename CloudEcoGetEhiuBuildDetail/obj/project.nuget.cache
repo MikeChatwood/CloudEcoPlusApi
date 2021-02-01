@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "hyBcvGbJ/tHwY2pJDZeVPHo6Lp/LMgL7NQh/5X1WKs+yokIy8Ea0fioDzwDvhK0gvMs/TesXjrQeCx+8hKUfpg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetEhiuBuildDetail\\ZZCloudEcoGetEhiuBuildDetail.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mike.chatwood\\.nuget\\packages\\amazon.lambda.core\\1.1.0\\amazon.lambda.core.1.1.0.nupkg.sha512",
+    "C:\\Users\\mike.chatwood\\.nuget\\packages\\amazon.lambda.serialization.systemtextjson\\2.0.0\\amazon.lambda.serialization.systemtextjson.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

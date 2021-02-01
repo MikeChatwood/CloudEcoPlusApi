@@ -1,0 +1,12 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\bin\Release\netcoreapp3.1\ecoCommon.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\bin\Release\netcoreapp3.1\ecoCommon.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\bin\Release\netcoreapp3.1\ecoCommon.runtimeconfig.dev.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\bin\Release\netcoreapp3.1\ecoCommon.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\bin\Release\netcoreapp3.1\ecoCommon.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.csprojAssemblyReference.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.AssemblyInfoInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.AssemblyInfo.cs
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.csproj.CoreCompileInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\ecoCommon\obj\Release\netcoreapp3.1\ecoCommon.genruntimeconfig.cache

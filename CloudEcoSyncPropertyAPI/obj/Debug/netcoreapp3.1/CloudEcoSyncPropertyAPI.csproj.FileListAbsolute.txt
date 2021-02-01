@@ -1,0 +1,11 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.runtimeconfig.dev.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.AssemblyInfoInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.AssemblyInfo.cs
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.genruntimeconfig.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.csprojAssemblyReference.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\obj\Debug\netcoreapp3.1\CloudEcoSyncPropertyAPI.pdb

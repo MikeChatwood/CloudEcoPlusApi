@@ -1,0 +1,19 @@
+{
+	"Action":0,
+"MessageName":"property",
+"PropertyID":1,
+	"SiteID":1,
+	"PropertyNumber":"99",
+"BlockName":"Bname",
+"BlockKey":"AAAA",
+"PropertyReference":"PREF",
+"BlockAddress":"aBlockAddress",
+"BlockPostCode":"LL2 3CC",
+"ArchivedProperty":false,
+"ArchivedReason":"blah",
+"ArchivedWho":"me",
+"ArchivedWhen":""
+
+
+
+}

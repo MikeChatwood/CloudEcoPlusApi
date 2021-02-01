@@ -1,0 +1,14 @@
+{
+
+"Action":"INSERT",
+"DisplaySequence":0,
+"Mandatory":false,
+"ConfigType":"ConfigTy",
+"Prompt":"Prompt Val",
+"Tag":"Tag Val",
+"CreatedBy": "Me"
+
+}
+
+
+

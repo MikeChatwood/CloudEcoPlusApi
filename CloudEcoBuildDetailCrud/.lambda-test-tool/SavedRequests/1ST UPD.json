@@ -1,0 +1,10 @@
+{
+"Action":"UPDATE",
+"Username":"me",
+"EhiuBuildDetailID":60,
+"EhiuBuildID":1,
+"EhiuBuildConfigDetailID":17,
+"ConfigType":"TEXT",
+"Prompt":"A prompt222222",
+"TestTag":"A tst tag"
+}

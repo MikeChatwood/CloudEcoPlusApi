@@ -1,0 +1,12 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\bin\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\bin\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\bin\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.runtimeconfig.dev.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\bin\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\bin\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.csprojAssemblyReference.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.csproj.CoreCompileInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.AssemblyInfoInputs.cache
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.AssemblyInfo.cs
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncSiteAPI\obj\Release\netcoreapp3.1\linux-x64\CloudEcoSyncSiteAPI.genruntimeconfig.cache
