@@ -76,10 +76,11 @@ namespace CloudEcoSensorIntervalRevert
     *  }
     * 
     * This lambda subscribes to the kinesis queue and looks for the "diagintervalrevert" message
-    *   The messsage is examined if the current time is after the revert time, the Eco+ is contacted and the diag set back to its original value
+    *   The message is examined if the current time is after the revert time, the Eco+ is contacted and the diag set back to its original value
     *   If not, the message is forced to remain on the stream and the kinesis retry mechanism relied on to represent it a few minutes later
     * 
-    * 
+    * If the Eco+ is not on line, the reconfigure diag message will be lost, however if its offline we are not adding costs and the R&D Eco+ 
+    * back end has a mechanism to revert the diag values on reconnect
     * 
  */
 
@@ -126,7 +127,7 @@ namespace CloudEcoSensorIntervalRevert
                 }
 
 
-                // --Send New values diags -----------------------------------------------------------------
+                // --Send New values diags to the Eco+ -----------------------------------------------------------------
 
 
 
@@ -145,6 +146,7 @@ namespace CloudEcoSensorIntervalRevert
                 tCommand oControlreportSetReply = new tCommand();
 
                 oControlreportSetReply = PostApi(oCommandSend, oRevertCommand.IMEI);
+
                 // -- End Command -----------------------------------------------------------------
 
 
