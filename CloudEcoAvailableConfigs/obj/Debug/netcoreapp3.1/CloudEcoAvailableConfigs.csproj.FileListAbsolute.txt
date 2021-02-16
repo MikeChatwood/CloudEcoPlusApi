@@ -28,3 +28,4 @@ C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\Clo
 C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoAvailableConfigs\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoAvailableConfigs\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoAvailableConfigs\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoAvailableConfigs\obj\Debug\netcoreapp3.1\CloudEcoAvailableConfigs.csproj.CoreCompileInputs.cache

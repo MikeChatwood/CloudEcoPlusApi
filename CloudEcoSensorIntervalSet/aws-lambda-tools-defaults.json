@@ -12,7 +12,7 @@
     "framework"     : "netcoreapp3.1",
     "function-runtime" : "dotnetcore3.1",
     "function-memory-size" : 256,
-    "function-timeout"     : 30,
+    "function-timeout"     : 60,
     "function-handler"     : "CloudEcoSensorIntervalSet::CloudEcoSensorIntervalSet.CloudEcoSensorIntervalSet::FunctionHandler",
     "function-name"        : "CloudEcoSensorIntervalSet",
     "package-type"         : "Zip",

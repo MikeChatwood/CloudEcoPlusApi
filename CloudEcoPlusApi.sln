@@ -77,7 +77,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEcoDeRegisterUnit", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEcoAddressSearch", "CloudEcoAddressSearch\CloudEcoAddressSearch.csproj", "{1CE61211-9453-4800-903E-777378F54298}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZZCloudEcoGetUnitStatus", "CloudEcoGetUnitStatus\ZZCloudEcoGetUnitStatus.csproj", "{DD2BACA3-9B41-43A0-9E97-2B1DAE248BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEcoGetUnitStatus", "CloudEcoGetUnitStatus\CloudEcoGetUnitStatus.csproj", "{DD2BACA3-9B41-43A0-9E97-2B1DAE248BC0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudEcoSensorIntervalSet", "CloudEcoSensorIntervalSet\CloudEcoSensorIntervalSet.csproj", "{CF5833AB-202A-4CA1-9C27-E7216927DF9E}"
 EndProject

@@ -33,6 +33,7 @@ namespace CloudEcoGetDiagValues
         public string PrimaryFlowReturnTemp { get; set; } = "";
         public string PrimaryFlowRate { get; set; } = "";
         public string SpaceHeatFlowTemp { get; set; } = "";
+        public string SpacePreasure { get; set; } = "";
         public string SpaceHeatFlowReturnTemp { get; set; } = "";
         public string SpaceHeatActuatorPosition { get; set; } = "";
         public string PumpSpeed { get; set; } = "";
@@ -458,7 +459,7 @@ namespace CloudEcoGetDiagValues
 
             int intDhwFlowTempID = -1;
             int intDhwReturnTempID = -1;
-            int intDhwRate = -1;
+            int intDhwRateID = -1;
             string strJson;
             tCommand oCommandSend;
             controlreport oControlReport;
@@ -507,17 +508,15 @@ namespace CloudEcoGetDiagValues
 
 
 
-
-
                 // Get the configuration for the current property
-                strQuery = "SELECT TOP 1 EhiuInstallDetailCommands.MbusId, EhiuInstallDetailCommands.SendJson, EhiuInstallDetailCommands.ReplyJson, EhiuInstallDetailCommands.CompanionName, " +
-                            " EhiuInstallDetailCommands.CompanionItemJson,  " +
-                            " EhiuInstallDetailCommands.DateCreated " +
+                strQuery = "SELECT TOP 1 EhiuInstallDetailCommands.MbusId, EhiuInstallDetailCommands.SendJson, EhiuInstallDetailCommands.ReplyJson, EhiuInstallDetailCommands.CompanionName, EhiuInstallDetailCommands.CompanionItemJson, " +
+                            " EhiuInstallDetailCommands.DateCreated, EhiuInstall.FromDate, EhiuInstall.ToDate, Property.PropertyNumber, Property.BlockName, EhiuInstall.EhiuInstallID " +
                             " FROM EhiuInstall INNER JOIN " +
                             " EhiuInstallDetail ON EhiuInstall.EhiuInstallID = EhiuInstallDetail.EhiuInstallID INNER JOIN " +
-                            " EhiuInstallDetailCommands ON EhiuInstallDetail.EhiuInstallDetailID = EhiuInstallDetailCommands.EhiuInstallDetailID " +
-                            " WHERE (EhiuInstallDetailCommands.CommandName = N'mbusconfig') AND (EhiuInstallDetailCommands.MbusId IS NOT NULL) AND (EhiuInstall.SerialNumber = @SerialNumber) And " +
-                            " EhiuInstallDetailCommands.MbusId = 1 " +
+                            " EhiuInstallDetailCommands ON EhiuInstallDetail.EhiuInstallDetailID = EhiuInstallDetailCommands.EhiuInstallDetailID INNER JOIN " +
+                            " Property ON EhiuInstall.PropertyID = Property.PropertyID " +
+                            " WHERE (EhiuInstallDetailCommands.CommandName = N'mbusconfig') AND (EhiuInstallDetailCommands.MbusId IS NOT NULL) AND (EhiuInstall.SerialNumber = @SerialNumber) AND (EhiuInstallDetailCommands.MbusId = 1) AND  " +
+                            " (EhiuInstall.ToDate IS NULL) " +
                             " ORDER BY EhiuInstallDetailCommands.DateCreated DESC";
 
                 daCheck = new SqlDataAdapter(strQuery, oSqlConnection);
@@ -538,17 +537,15 @@ namespace CloudEcoGetDiagValues
 
                     intDhwFlowTempID = mbusconfig_Companion.FlowTempID;
                     intDhwReturnTempID = mbusconfig_Companion.ReturnTempID;
-                    intDhwRate = mbusconfig_Companion.FlowRate;
+                    intDhwRateID = mbusconfig_Companion.FlowRate;
 
                     oResult.IsInstalled = true;
-
-
 
                 }
                 // Build list to send
                 if (oResult.IsInstalled == false)
                 {
-                    return oResult;
+                    oResult.Info = "Not installed";
                 }
 
 
@@ -633,10 +630,19 @@ namespace CloudEcoGetDiagValues
                     oResult.PaygoStatus = "On";
                 };
 
+                if (oResult.IsInstalled == true)
+                {
+                    oResult.PrimaryFlowRate = GetSubValue(oMbusReport, intDhwRateID).ToString("0.0") + " l/m";
+                    oResult.PrimaryFlowReturnTemp = GetSubValue(oMbusReport, intDhwReturnTempID).ToString("0.0") + " c";
+                    oResult.PrimaryFlowTemp = GetSubValue(oMbusReport, intDhwFlowTempID).ToString("0.0") + " c";
+                }
+                else
+                {
+                    oResult.PrimaryFlowRate = "n/a";
+                    oResult.PrimaryFlowReturnTemp = "n/a";
+                    oResult.PrimaryFlowTemp = "n/a";
+                }
 
-                oResult.PrimaryFlowRate = GetSubValue(oMbusReport, intDhwRate).ToString("0.0") + " l/m";
-                oResult.PrimaryFlowReturnTemp = GetSubValue(oMbusReport, intDhwReturnTempID).ToString("0.0") + " c";
-                oResult.PrimaryFlowTemp = GetSubValue(oMbusReport, intDhwFlowTempID).ToString("0.0") + " c";
 
                 oResult.PumpSpeed = oControlReport.chPump.ToString();
                 oResult.SpaceHeatActuatorPosition = oControlReport.chValve.ToString();
@@ -644,6 +650,7 @@ namespace CloudEcoGetDiagValues
                 oResult.SpaceHeatFlowReturnTemp = oSensorReport.chInTemp.ToString("0.0") + " c";
 
                 oResult.SpaceHeatFlowTemp = oSensorReport.chOutTemp.ToString("0.0") + " c";
+                oResult.SpacePreasure = oSensorReport.chPressure.ToString("0.0") + " bar";
 
                 oResult.DhwFlow = oSensorReport.hwInTemp.ToString("0.0") + " c";
                 oResult.DhwReturn = oSensorReport.hwOutTemp.ToString("0.0") + " c";
@@ -927,7 +934,7 @@ namespace CloudEcoGetDiagValues
 
                         datLastSeen = UnixTimeToDateTime(oLastSeen.timeStamp);
                         TimeSpan ts = DateTime.Now - datLastSeen;
-                        intReturn  = (int)ts.TotalMinutes;
+                        intReturn = (int)ts.TotalMinutes;
                     }
                     else
                     {

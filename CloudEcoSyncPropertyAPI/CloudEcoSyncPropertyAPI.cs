@@ -18,6 +18,14 @@ namespace CloudEcoSyncPropertyAPI
 
     public class tInput
     {
+        public List<tInputItem> PropertyList { get; set; } = new List<tInputItem>();
+
+    }
+
+
+    public class tInputItem
+    {
+
 
         public enum tAction
         {
@@ -94,14 +102,27 @@ namespace CloudEcoSyncPropertyAPI
         public async Task<tResult> FunctionHandler(tInput oInput, ILambdaContext context)
         {
             tResult oResult = new tResult();
+            int intIdx;
 
             context.Logger.LogLine($"Input string:{JsonSerializer.Serialize<tInput>(oInput) }");
 
+
+
             try
             {
+                context.Logger.LogLine("Passed " + oInput.PropertyList.Count.ToString());
+
+                for (intIdx = 0; intIdx <= oInput.PropertyList.Count - 1; intIdx++)
+                {
+                    oResult = await WriteStream(oInput.PropertyList[intIdx], context);  // Write to Kinesis
+                    if (oResult.Ok == false)
+                    {
+                        break;
+                    }
+                }
 
                 // Validate here
-                oResult = await WriteStream(oInput, context);  // Write to Kinesis
+
 
                 context.Logger.LogLine("State 1");
 
@@ -119,7 +140,7 @@ namespace CloudEcoSyncPropertyAPI
 
 
 
-        private static async Task<tResult> WriteStream(tInput oInput, ILambdaContext context)
+        private static async Task<tResult> WriteStream(tInputItem oInput, ILambdaContext context)
         {
 
             const string myStreamName = "CloudEcoPlus";

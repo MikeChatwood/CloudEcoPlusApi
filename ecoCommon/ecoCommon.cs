@@ -220,7 +220,7 @@ public class ecoCommon
         {
         }
 
-        strQuery = "SELECT IMEI From Ehiu Where SerialNumber = @SerialNumber";
+        strQuery = "SELECT ISNULL(IMEI, '') As IMEI From Ehiu Where SerialNumber = @SerialNumber";
 
         daCheck = new SqlDataAdapter(strQuery, oSqlConnection);
 

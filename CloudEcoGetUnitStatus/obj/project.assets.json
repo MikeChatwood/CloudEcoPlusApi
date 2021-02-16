@@ -958,9 +958,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\ZZCloudEcoGetUnitStatus.csproj",
-      "projectName": "ZZCloudEcoGetUnitStatus",
-      "projectPath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\ZZCloudEcoGetUnitStatus.csproj",
+      "projectUniqueName": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\CloudEcoGetUnitStatus.csproj",
+      "projectName": "CloudEcoGetUnitStatus",
+      "projectPath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\CloudEcoGetUnitStatus.csproj",
       "packagesPath": "C:\\Users\\mike.chatwood\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\obj\\",
       "projectStyle": "PackageReference",

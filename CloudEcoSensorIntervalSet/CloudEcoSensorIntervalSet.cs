@@ -78,6 +78,26 @@ namespace CloudEcoSensorIntervalSet
         public int sensorInterval { get; set; }
     }
 
+    /*
+     * When an engineer visits an Eco+  or the back office connect to an Eco+ the diagnostics need to be 
+     * changed so they poll and contact AWS more frequently. Normally this is on a 30 minute cycle, when 
+     * an engineer a typical polling interval is 15 seconds. 
+     * 
+     * This will have a major cost implication, should the unit be left in this high frequency state
+     * 
+     * This lambda and it's counter part Interval Revert implement when can be thought of as a lease.
+     * 
+     * The UI via the api-gateway would typically set a lease
+     * 
+     * {
+     *  "SerialNumber": "ABCD123",        < -- Scanned from of the cabinet
+     *  "SensorInterval":15,              < -- 15 seconds  
+     *  "RevertWindowMinutes": 60         < -- One hour  
+     *  }
+     * 
+     * 
+     */
+
     public class CloudEcoSensorIntervalSet
     {
 
@@ -100,9 +120,9 @@ namespace CloudEcoSensorIntervalSet
 
             /*
              *  Get the IMEI
-             *  Get the current 
+             *  Get the current diag value
              *  Reconfigure to supplied values
-             *  If the current is > 45 seconds 
+             *  If the current is > 45 seconds, if less than 45 seconds the unit is already in a high frequency mode and can be safely left in it 
              *      Queue a message on Kinesis, which will be ignored until the time is past. When time is passed the values are returned to the original values
              * 
              * 
@@ -127,10 +147,13 @@ namespace CloudEcoSensorIntervalSet
             }
 
 
-            strIMEI = ecoCommon.GetDeviceIMEINumber(oInput.SerialNumber, context, ref oSqlConnection);
+            strIMEI = ecoCommon.GetDeviceIMEINumber(oInput.SerialNumber, context, ref oSqlConnection);  // The aws iot api uses the IMEI, not the unit serial number, this is captured during manufacturing
 
 
             // --Get Current values (diags)  -----------------------------------------------------------------
+
+
+            context.Logger.LogLine("FunctionHandler Get Current values ");
 
             oCommandSend = new tCommand();
 
@@ -149,46 +172,22 @@ namespace CloudEcoSensorIntervalSet
                 return oResult;
             };
 
-
             oCurrentDiag = JsonSerializer.Deserialize<diags>(oControlreportGetReply.ReplyJson);
 
-            // -- End Command -----------------------------------------------------------------
-
-
-
-            // --Send New values diags -----------------------------------------------------------------
-
-            oCommandSend = new tCommand();
-
-            oNewDiag.controlInterval = oInput.SensorInterval;
-            oNewDiag.sensorInterval = oInput.SensorInterval;
-
-            oCommandSend.CommandName = "diags";
-            oCommandSend.UrlPath = "diags/{devid}";
-            oCommandSend.CommandJson = JsonSerializer.Serialize(oNewDiag);
-            oCommandSend.ToEco = true;
-
-            tCommand oControlreportSetReply = new tCommand();
-
-            PostApiAsync(oCommandSend, strIMEI);
-
-
-
-            //oControlreportSetReply = PostApi(oCommandSend, strIMEI);
-            //if (oControlreportSetReply.PostStatus != "ok")
-            //{
-            //    oResult.Ok = false;
-            //    oResult.Info = oControlreportSetReply.PostStatus;
-            //    return oResult;
-            //};
-
-
+            context.Logger.LogLine("FunctionHandler Get Current values End " + oCurrentDiag.sensorInterval.ToString());
 
             // -- End Command -----------------------------------------------------------------
 
 
-            if (oCurrentDiag.sensorInterval > 45)  // Only revert back if > 45 seconds, less then is considered as already being in test
+
+            // -- Queue the revert ------------------------------------------------------------------
+
+
+            if (oCurrentDiag.sensorInterval > 45)  // Only revert back if > 45 seconds, less then is considered as already being in test mode
             {
+
+                // Write a record to kinesis, carrying 1) When to revert 2) The previously set value to revert to
+
                 datRevertAfter = DateTime.Now.AddMinutes(oInput.RevertWindowMinutes);
                 oRevertCommand.SensorInterval = oCurrentDiag.sensorInterval;
 
@@ -201,143 +200,40 @@ namespace CloudEcoSensorIntervalSet
 
                 oResult = await WriteStream(oRevertCommand, context);  // Write to Kinesis
 
+
+
+                // --Send New values diags -----------------------------------------------------------------
+
+                oCommandSend = new tCommand();
+
+                oNewDiag.controlInterval = oInput.SensorInterval;
+                oNewDiag.sensorInterval = oInput.SensorInterval;
+
+                oCommandSend.CommandName = "diags";
+                oCommandSend.UrlPath = "diags/{devid}";
+                oCommandSend.CommandJson = JsonSerializer.Serialize(oNewDiag);
+                oCommandSend.ToEco = true;
+
+                tCommand oControlreportSetReply = new tCommand();
+
+                context.Logger.LogLine("FunctionHandler Set diags ------------> " + oNewDiag.controlInterval.ToString());
+
+                oControlreportSetReply = PostApi(oCommandSend, strIMEI);
+                if (oControlreportSetReply.PostStatus != "ok")
+                {
+                    oResult.Ok = false;
+                    oResult.Info = oControlreportSetReply.PostStatus;
+                    return oResult;
+                };
+
             }
+
+            // -- End Command -----------------------------------------------------------------
+
 
 
             return oResult;
 
-        }
-
-        private async void PostApiAsync(tCommand oCommandSend, string strIMEI)
-        {
-            HttpWebRequest request;
-            HttpWebResponse response = null/* TODO Change to default(_) if this is not a reference type */;
-            StreamReader reader;
-            Uri address;
-            string appId;
-            string strResponse = "";
-            UInt32 uInt32StartDatetime;
-            UInt32 uInt32EndDatetime;
-
-            Stream postStream = null;
-            string strUrl;
-            byte[] byteData;
-            StringBuilder data;
-            tCommand oCommandReply = new tCommand();
-
-            oCommandReply.PostStatus = "offline";
-
-
-
-
-
-            strUrl = strApiUrl;
-
-            strUrl = strUrl + oCommandSend.UrlPath;
-            strUrl = strUrl.Replace("{devid}", strIMEI);
-            strUrl = strUrl.Replace("{pathelement}", oCommandSend.PathElement);
-
-            address = new Uri(strUrl);
-
-            try
-            {
-
-                // The reply is mainly the same as the send, for easier processing by the client, ie send and reply together
-
-                oCommandReply.CommandJson = oCommandSend.CommandJson;
-                oCommandReply.CommandName = oCommandSend.CommandName;
-                oCommandReply.CompanionJson = oCommandSend.CompanionJson;
-                oCommandReply.CompanionName = oCommandSend.CompanionName;
-                oCommandReply.EndTime = oCommandSend.EndTime;
-                oCommandReply.PathElement = oCommandSend.PathElement;
-                oCommandReply.StartTime = oCommandSend.StartTime;
-                oCommandReply.ToEco = oCommandSend.ToEco;
-
-                request = (HttpWebRequest)WebRequest.Create(address);
-                if (oCommandSend.ToEco == true)
-                {
-                    request.Method = "PATCH";
-                }
-                else
-                {
-                    request.Method = "GET";
-                }
-
-                request.ContentType = "application/x-www-form-urlencoded";
-
-                request.Headers.Add("x-api-key", strApiKey);
-
-                appId = "ss-form";
-                if (oCommandSend.ToEco == true)
-                {
-                    data = new StringBuilder();
-
-                    data.Append(oCommandSend.CommandJson);
-
-                    byteData = UTF8Encoding.UTF8.GetBytes(data.ToString());
-
-                    // Set the content length in the request headers  
-                    request.ContentLength = byteData.Length;
-
-                    // Write data  
-                    try
-                    {
-                        postStream = request.GetRequestStream();
-                        postStream.Write(byteData, 0, byteData.Length);
-                    }
-                    finally
-                    {
-                        if (postStream != null)
-                            postStream.Close();
-                    }
-                }
-                else
-                {
-
-                    if (postStream != null)
-                        postStream.Close();
-                }
-                try
-                {
-                    // Get response  
-                    response = (HttpWebResponse)request.GetResponse();
-
-                    // Get the response stream into a reader  
-                    reader = new StreamReader(response.GetResponseStream());
-
-                    strResponse = reader.ReadToEnd();
-                    if (response.StatusCode == HttpStatusCode.OK)
-                    {
-                        oCommandReply.PostStatus = "ok";
-                        oCommandReply.ReplyJson = strResponse;
-
-                        //return oCommandReply;
-                    }
-                    else
-                    {
-                    }
-                }
-                finally
-                {
-                    if (response != null)
-                    {
-                        if (response.StatusCode == HttpStatusCode.OK)
-                            oCommandReply.PostStatus = "ok";
-
-                        if (response.StatusCode.ToString().IndexOf("504") != -1)
-                            oCommandReply.PostStatus = "timeout";
-                        response.Close();
-                    }
-                    else
-                        oCommandReply.PostStatus = "offline";
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-
-
-            // return oCommandReply;
         }
 
         private tCommand PostApi(tCommand oCommandSend, string strIMEI)
@@ -348,8 +244,6 @@ namespace CloudEcoSensorIntervalSet
             Uri address;
             string appId;
             string strResponse = "";
-            UInt32 uInt32StartDatetime;
-            UInt32 uInt32EndDatetime;
 
             Stream postStream = null;
             string strUrl;
@@ -358,10 +252,6 @@ namespace CloudEcoSensorIntervalSet
             tCommand oCommandReply = new tCommand();
 
             oCommandReply.PostStatus = "offline";
-
-
-
-
 
             strUrl = strApiUrl;
 
@@ -471,6 +361,10 @@ namespace CloudEcoSensorIntervalSet
 
             return oCommandReply;
         }
+
+
+
+
 
 
         private static async Task<tResult> WriteStream(tRevertCommand oRevertCommand, ILambdaContext context)

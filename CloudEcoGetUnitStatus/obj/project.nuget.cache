@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zXlIyoAQfFvtFcwMmpAZSJCYZnwXJ+WZYzXyp0eptOmyW96fSnfAA10mjaBntqpRwYveONi9b874eC6lyFs7Dw==",
+  "dgSpecHash": "eMgxT4tm0geMmPviAtbCfdaN3PjF3STtM1kTsIten9tD3v/qPwfQsNZlxrwjaOQMOoVHKTYQ2AL5GE35vGXkmQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\ZZCloudEcoGetUnitStatus.csproj",
+  "projectFilePath": "C:\\Users\\mike.chatwood\\Documents\\Visual Studio 2019\\Projects\\CloudEcoPlusApi\\CloudEcoGetUnitStatus\\CloudEcoGetUnitStatus.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mike.chatwood\\.nuget\\packages\\amazon.lambda.core\\1.2.0\\amazon.lambda.core.1.2.0.nupkg.sha512",
     "C:\\Users\\mike.chatwood\\.nuget\\packages\\amazon.lambda.serialization.systemtextjson\\2.1.0\\amazon.lambda.serialization.systemtextjson.2.1.0.nupkg.sha512",

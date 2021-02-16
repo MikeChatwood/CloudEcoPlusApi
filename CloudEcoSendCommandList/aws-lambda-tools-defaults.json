@@ -19,5 +19,7 @@
     "function-subnets"     : "subnet-09712e536e623aa46,subnet-0291918d24ebb5e97",
     "function-security-groups" : "sg-0e4c3dfc4c2fc5549",
     "tracing-mode"             : "PassThrough",
-    "environment-variables"    : ""
+    "environment-variables"    : "",
+    "package-type"             : "Zip",
+    "image-tag"                : ""
 }

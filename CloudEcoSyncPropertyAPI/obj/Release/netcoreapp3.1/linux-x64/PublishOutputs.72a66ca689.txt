@@ -1,0 +1,9 @@
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\CloudEcoSyncPropertyAPI.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\CloudEcoSyncPropertyAPI.deps.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\CloudEcoSyncPropertyAPI.runtimeconfig.json
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\CloudEcoSyncPropertyAPI.pdb
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Core.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.KinesisEvents.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\AWSSDK.Core.dll
+C:\Users\mike.chatwood\Documents\Visual Studio 2019\Projects\CloudEcoPlusApi\CloudEcoSyncPropertyAPI\bin\Release\netcoreapp3.1\publish\AWSSDK.Kinesis.dll

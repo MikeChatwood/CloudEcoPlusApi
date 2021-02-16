@@ -89,8 +89,6 @@ namespace CloudEcoEhiuCrud
                     context.Logger.LogLine("WriteRecord Ex  1" + ex.Message);
                 }
 
-
-
               
 
                 if ("insertupdatedelete".IndexOf(oInput.Action) == -1)
@@ -114,8 +112,7 @@ namespace CloudEcoEhiuCrud
                         return oResult;
                     }
 
-
-                };
+                                    };
 
                 if (oInput.Action == "insert")
                 {

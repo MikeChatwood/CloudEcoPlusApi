@@ -49,6 +49,7 @@ namespace CloudEcoSendCommandList
         public bool Ok { get; set; } = true;
         public int Result { get; set; } = -1;
         public string Info { get; set; } = "";
+        public string InfoDetail { get; set; } = "";
 
         public string SerialNumber { get; set; } = null;
         public List<tCommand> Commands { get; set; } = new List<tCommand>();
@@ -58,6 +59,7 @@ namespace CloudEcoSendCommandList
 
             public string ReplyJson { get; set; } = null;
             public string PostStatus { get; set; } = null; //  Ok / OffLine / Timeout / NotSent
+            public string PostStatusDetail { get; set; } = null;
 
             public bool ToEco { get; set; } = true;
 
@@ -140,6 +142,8 @@ namespace CloudEcoSendCommandList
                     {
                         oResult.Ok = false;
                         oResult.Info = "A command failed";
+                        oResult.InfoDetail = oCommandReply.PostStatusDetail;
+                        break;
 
                     }
                 }
@@ -275,6 +279,11 @@ namespace CloudEcoSendCommandList
                     else
                     {
                     }
+                }
+                catch (Exception ex)
+                {
+
+                    oCommandReply.PostStatusDetail = ex.Message;
                 }
                 finally
                 {

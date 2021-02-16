@@ -30,6 +30,7 @@ namespace CloudEcoSendConfig
         public bool Ok { get; set; } = true;
         public int Result { get; set; } = -1;
         public string Info { get; set; } = "";
+        public string InfoDetail { get; set; } = "";
     }
 
     public class CloudEcoSendConfig
@@ -66,6 +67,7 @@ namespace CloudEcoSendConfig
             public string CompanionName { get; set; } = null;
             public string CompanionJson { get; set; } = null;
             public string PostStatus { get; set; } = null; //  Ok / OffLine / Timeout / NotSent
+            public string PostStatusDetail { get; set; } = null;
         }
         public tResult FunctionHandler(tInput oInput, ILambdaContext context)
         {
@@ -107,18 +109,39 @@ namespace CloudEcoSendConfig
             try
             {
                 strIMEI = ecoCommon.GetDeviceIMEINumber(oInput.SerialNumber, context, ref oSqlConnection);
+                if (strIMEI == "")
+                {
+
+                    context.Logger.LogLine("Not recognised serial number " + oInput.SerialNumber);
+                    oResult.Ok = false;
+                    oResult.Info = "Not recognised serial number";
+                    return oResult;
+                };
 
                 dsCommands = getCommands(oInput.EhiuSiteConfigID, context, ref oSqlConnection);
 
                 strConfigName = (string)dsCommands.Tables[0].Rows[0]["Name"];
 
-                intEhiuInstallID = getExistingEcoInstallThisProperty(oInput.SerialNumber, oInput.PropertyID, context, ref oSqlConnection);
-                if (intEhiuInstallID == -1)
+                intEhiuInstallID = getExistingEcoInstallThisSerialNumber(oInput.SerialNumber, oInput.PropertyID, context, ref oSqlConnection);
+                if (intEhiuInstallID != -1)
                 {
-                    intEhiuInstallID = RegisterUnit(oInput.PropertyID, oInput.SerialNumber, oInput.EhiuSiteConfigID, strConfigName, oInput.UserName, context, ref oSqlConnection); // Add 
-                };
+                    // This unit as already installed in another property, cant procede
 
-                intEhiuInstallDetailID = RegisterConfigApplication(intEhiuInstallID, oInput.EhiuSiteConfigID, DateTime.Now, oInput.UserName, context, ref oSqlConnection);
+                    oResult.Ok = false;
+                    oResult.Info = "This Eco+ is already installed in another property";
+
+                    return oResult;
+                }
+
+
+
+                //intEhiuInstallID = getExistingEcoInstallThisProperty(oInput.SerialNumber, oInput.PropertyID, context, ref oSqlConnection);
+                //if (intEhiuInstallID == -1)
+                //{
+                //    intEhiuInstallID = RegisterUnit(oInput.PropertyID, oInput.SerialNumber, oInput.EhiuSiteConfigID, strConfigName, oInput.UserName, context, ref oSqlConnection); // Add 
+                //};
+
+                //intEhiuInstallDetailID = RegisterConfigApplication(intEhiuInstallID, oInput.EhiuSiteConfigID, DateTime.Now, oInput.UserName, context, ref oSqlConnection);
 
 
                 for (intIdx = 0; intIdx <= dsCommands.Tables[0].Rows.Count - 1; intIdx++)
@@ -162,23 +185,48 @@ namespace CloudEcoSendConfig
 
                     if (oCommandReply.PostStatus != "ok")
                     {
+
+                        oResult.Ok = false;
+                        oResult.Info = oCommandReply.PostStatus;
+                        if (oCommandReply.PostStatusDetail != null)
+                        {
+                            oResult.InfoDetail = oCommandReply.PostStatusDetail;
+                        }
+
                         break;
                     }
-                    WriteRegisterEcoDetailCommands(intEhiuInstallDetailID,
-                                                oCommandSend.CompanionName,
-                                                oCommandSend.CompanionJson,
-                                                oCommandSend.CommandName,
-                                                oCommandSend.CommandJson,
-                                                oCommandReply.ReplyJson,
-                                                oInput.UserName,
-                                                oCommandSend.MbusID,
-                                                context, ref oSqlConnection);
+                    else
+                    {
+
+                        intEhiuInstallID = getExistingEcoInstallThisProperty(oInput.SerialNumber, oInput.PropertyID, context, ref oSqlConnection);
+                        if (intEhiuInstallID == -1)
+                        {
+                            intEhiuInstallID = RegisterUnit(oInput.PropertyID, oInput.SerialNumber, oInput.EhiuSiteConfigID, strConfigName, oInput.UserName, context, ref oSqlConnection); // Add 
+                        };
+
+                        intEhiuInstallDetailID = RegisterConfigApplication(intEhiuInstallID, oInput.EhiuSiteConfigID, DateTime.Now, oInput.UserName, context, ref oSqlConnection);
+
+
+                        WriteRegisterEcoDetailCommands(intEhiuInstallDetailID,
+                                                                   oCommandSend.CompanionName,
+                                                                   oCommandSend.CompanionJson,
+                                                                   oCommandSend.CommandName,
+                                                                   oCommandSend.CommandJson,
+                                                                   oCommandReply.ReplyJson,
+                                                                   oInput.UserName,
+                                                                   oCommandSend.MbusID,
+                                                                   context, ref oSqlConnection);
+                    }
+
 
                 };
 
             }
             catch (Exception ex)
             {
+
+                oResult.Ok = false;
+                oResult.Info = "Internal error";
                 context.Logger.LogLine("WriteRecord Ex 2" + ex.Message);
             }
             return oResult;
@@ -445,6 +493,52 @@ namespace CloudEcoSendConfig
             return intReturn;
         }
 
+        private int getExistingEcoInstallThisSerialNumber(string strSerialNumber, int intPropertyID, ILambdaContext context, ref SqlConnection oSqlConnection)
+        {
+
+            string strQuery = "";
+            SqlDataAdapter daCheck = new SqlDataAdapter();
+            DataSet dsCheck = new DataSet();
+            tResult oResult = new tResult();
+            int intIdx;
+            int intReturn = -1;
+
+            try
+            {
+
+                context.Logger.LogLine("getExistingEcoInstallThisProperty 1 " + strSerialNumber.ToString());
+
+                strQuery = "SELECT TOP (1) EhiuInstallID " +
+                            " FROM EhiuInstall  " +
+                            " WHERE (PropertyID <> @PropertyID) AND  " +
+                            " ToDate Is Null And  " +
+                            " SerialNumber = @SerialNumber";
+
+                daCheck = new SqlDataAdapter(strQuery, oSqlConnection);
+
+                SqlParameter sqlParamPropertyID = new SqlParameter("@PropertyID", SqlDbType.Int);
+                sqlParamPropertyID.Value = intPropertyID;
+                daCheck.SelectCommand.Parameters.Add(sqlParamPropertyID);
+
+                SqlParameter sqlParamSerialNumber = new SqlParameter("@SerialNumber", SqlDbType.NVarChar);
+                sqlParamSerialNumber.Value = strSerialNumber;
+                daCheck.SelectCommand.Parameters.Add(sqlParamSerialNumber);
+
+                daCheck.Fill(dsCheck);
+
+
+                for (intIdx = 0; intIdx <= dsCheck.Tables[0].Rows.Count - 1; intIdx++)
+                {
+                    intReturn = (int)dsCheck.Tables[0].Rows[intIdx]["EhiuInstallID"];
+                }
+
+            }
+            catch (Exception)
+            {
+            }
+            return intReturn;
+        }
+
 
 
 
@@ -554,6 +648,12 @@ namespace CloudEcoSendConfig
                     else
                     {
                     }
+                }
+
+                catch (Exception ex)
+                {
+
+                    oCommandReply.PostStatusDetail = ex.Message;
                 }
                 finally
                 {

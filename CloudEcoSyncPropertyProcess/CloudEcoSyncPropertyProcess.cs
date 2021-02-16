@@ -57,7 +57,7 @@ namespace CloudEcoSyncPropertyProcess
             int intSiteID;
             tInput oInput;
 
-            context.Logger.LogLine("FunctionHandler 1 1725");
+            context.Logger.LogLine("FunctionHandler 1 1446");
 
             try
             {
@@ -81,7 +81,7 @@ namespace CloudEcoSyncPropertyProcess
                 context.Logger.LogLine("FunctionHandler rd  >" + recordData);
 
                 oInput = JsonSerializer.Deserialize<tInput>(recordData);
-
+                
                 if (oInput.MessageName.ToLower() != "property")
                 {
                     continue;
@@ -111,9 +111,19 @@ namespace CloudEcoSyncPropertyProcess
                 {
                     DeleteProperty(oInput, context, ref oSqlConnection);
                 };
-
+                
                 context.Logger.LogLine("Stream processing complete.");
             }
+
+            try
+            {
+                oSqlConnection.Close();
+            }
+            catch
+            {
+
+            }
+          
         }
         private string GetRecordContents(KinesisEvent.Record streamRecord)
         {

@@ -57,6 +57,32 @@ namespace CloudEcoSensorIntervalRevert
         public int sensorInterval { get; set; }
     }
 
+
+    /*
+    * When an engineer visits an Eco+  or the back office connect to an Eco+ the diagnostics need to be 
+    * changed so they poll and contact AWS more frequently. Normally this is on a 30 minute cycle, when 
+    * an engineer a typical polling interval is 15 seconds. 
+    * 
+    * This will have a major cost implication, should the unit be left in this high frequency state
+    * 
+    * This lambda and it's counter part Interval Set implement when can be thought of as a lease.
+    * 
+    * The UI via the api-gateway would typically set a lease
+    * 
+    * {
+    *  "SerialNumber": "ABCD123",        < -- Scanned from of the cabinet
+    *  "SensorInterval":15,              < -- 15 seconds  
+    *  "RevertWindowMinutes": 60         < -- One hour  
+    *  }
+    * 
+    * This lambda subscribes to the kinesis queue and looks for the "diagintervalrevert" message
+    *   The messsage is examined if the current time is after the revert time, the Eco+ is contacted and the diag set back to its original value
+    *   If not, the message is forced to remain on the stream and the kinesis retry mechanism relied on to represent it a few minutes later
+    * 
+    * 
+    * 
+ */
+
     public class CloudEcoSensorIntervalRevert
     {
 
@@ -72,19 +98,12 @@ namespace CloudEcoSensorIntervalRevert
             diags oNewDiag = new diags();
             tCommand oCommandSend;
 
-            context.Logger.LogLine("FunctionHandler 1 0945");
-
-
-
-           // context.Logger.LogLine("FunctionHandler 3");
-
-          //  context.Logger.LogLine($"Beginning to process {kinesisEvent.Records.Count} records...");
+            context.Logger.LogLine("FunctionHandler 1 1145");
 
             foreach (var record in kinesisEvent.Records)
             {
 
                 string recordData = GetRecordContents(record.Kinesis);
-
 
                 oRevertCommand = JsonSerializer.Deserialize<tRevertCommand>(recordData);
 
@@ -95,13 +114,13 @@ namespace CloudEcoSensorIntervalRevert
 
                 context.Logger.LogLine("FunctionHandler rd  >" + recordData);
 
-                datRevert = ecoCommon.DateJson(oRevertCommand.RevertAfter);
+                datRevert = ecoCommon.DateJson(oRevertCommand.RevertAfter); // encoded as dd/mm/yyyy hh:mm:ss
                 if (DateTime.Compare(DateTime.Now, datRevert) < 0)
                 {
 
-                    context.Logger.LogLine("FunctionHandler Not my time " + datRevert.ToString () + " " + DateTime.Now.ToString());
+                    context.Logger.LogLine("FunctionHandler Not my time " + datRevert.ToString() + " " + DateTime.Now.ToString());
 
-                    context.Logger.LogLine(oRevertCommand.MakeItFail.ToString());
+                    context.Logger.LogLine(oRevertCommand.MakeItFail.ToString());   // Property does not exists, deliberately let it fail (cludge) and leave the message on the queue
 
                     continue;  // Not my time, let the stream represent until ready
                 }
@@ -109,10 +128,14 @@ namespace CloudEcoSensorIntervalRevert
 
                 // --Send New values diags -----------------------------------------------------------------
 
+
+
                 oCommandSend = new tCommand();
 
                 oNewDiag.controlInterval = oRevertCommand.SensorInterval;
                 oNewDiag.sensorInterval = oRevertCommand.SensorInterval;
+
+                context.Logger.LogLine("FunctionHandler This is my time, Reverting " + datRevert.ToString() + " " + DateTime.Now.ToString() + " To Interval " + oRevertCommand.SensorInterval.ToString());
 
                 oCommandSend.CommandName = "diags";
                 oCommandSend.UrlPath = "diags/{devid}";
@@ -122,19 +145,9 @@ namespace CloudEcoSensorIntervalRevert
                 tCommand oControlreportSetReply = new tCommand();
 
                 oControlreportSetReply = PostApi(oCommandSend, oRevertCommand.IMEI);
-                //if (oControlreportSetReply.PostStatus != "ok")
-                //{
-                //    oResult. = false;
-                //    return oResult;
-                //};
-
-
-
                 // -- End Command -----------------------------------------------------------------
 
 
-
-               // context.Logger.LogLine("Stream processing complete.");
             }
         }
         private string GetRecordContents(KinesisEvent.Record streamRecord)
@@ -155,8 +168,7 @@ namespace CloudEcoSensorIntervalRevert
             Uri address;
             string appId;
             string strResponse = "";
-            UInt32 uInt32StartDatetime;
-            UInt32 uInt32EndDatetime;
+
 
             Stream postStream = null;
             string strUrl;
@@ -165,10 +177,6 @@ namespace CloudEcoSensorIntervalRevert
             tCommand oCommandReply = new tCommand();
 
             oCommandReply.PostStatus = "offline";
-
-
-
-
 
             strUrl = strApiUrl;
 
