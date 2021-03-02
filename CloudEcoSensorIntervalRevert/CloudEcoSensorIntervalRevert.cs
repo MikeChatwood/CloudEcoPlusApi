@@ -72,7 +72,7 @@ namespace CloudEcoSensorIntervalRevert
     * {
     *  "SerialNumber": "ABCD123",        < -- Scanned from of the cabinet
     *  "SensorInterval":15,              < -- 15 seconds  
-    *  "RevertWindowMinutes": 60         < -- One hour  
+    *  "RevertWindowMinutes": 60         < -- One hour   
     *  }
     * 
     * This lambda subscribes to the kinesis queue and looks for the "diagintervalrevert" message
